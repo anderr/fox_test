@@ -5,7 +5,7 @@
 				<card v-for="(cardone, index) in cardsInMain" :key="index" :index="index" :card="card"></card>
 			</transition-group>
 		</div>
-		
+
 		<button class="btn" @click="loadMore" v-if="cardsInMain < maxCardsInMain">Load more...</button>
 		<div class="cards__counter">
 			Количество карточек: {{ cardsInMain }} (не больше {{ maxCardsInMain }})
@@ -21,7 +21,7 @@
 			return {
 				cardsInMain: 4,
 				maxCardsInMain: 12
-			}	
+			}
 		},
 		props: ['card'],
 		methods: {
@@ -48,5 +48,27 @@
 	.list-enter, .list-leave-to {
 	  opacity: 0;
 	  transform: translateY(20px);
+	}
+
+	.cards {
+		margin: 5px auto 15px;
+
+		@media (max-width: 550px) {
+			margin: 5px auto 5px;
+		}
+
+		&__counter {
+			text-align: center;
+			font-size: .85em;
+			margin-bottom: 50px;
+		}
+
+		.card {
+			margin: 26px auto;
+
+			@media (max-width: 550px) {
+				margin: 18px auto;
+			}
+		}
 	}
 </style>

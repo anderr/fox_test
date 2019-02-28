@@ -30,7 +30,7 @@
 				<i class="icon-arrow-right"></i>
 			</div>
 		</div>
-		
+
 		<button class="btn" @click="appendSlide" v-if="cardsInSlider < 5">Добавить слайд</button>
 		<div class="cards__counter">{{ cardsInSlider }} из возможных {{ maxCardsInSlider }}</div>
 	</div>
@@ -49,7 +49,7 @@
 				transform: 0,
 				slidesPerRow: 4,
 				windowWidth: 0
-			}	
+			}
 		},
 		props: ['card'],
 		methods: {
@@ -62,7 +62,7 @@
 
 					this.transform = this.transform - (trackWidth / this.cardsInSlider);
 					track.style.transform = 'translateX(' + this.transform + 'px)';
-					
+
 					this.appendSlide();
 				}
 			},
@@ -138,3 +138,55 @@
 		}
 	}
 </script>
+
+<style lang="scss" scoped>
+#slider-track {
+	width: 100%;
+	overflow: hidden;
+}
+.slider-track-inner {
+	transform: translateX(0);
+	transform-origin: left top;
+	transition: transform .6s ease-in-out;
+
+	&.centered {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+}
+
+.cards__slider {
+	position: relative;
+
+	&-arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		background: #BBB;
+		color: #EEE;
+		padding: 30px 5px;
+		z-index: 10000;
+		transition: .3s background;
+
+		&:hover {
+			background: lighten(#BBB, 4%);
+		}
+	}
+	&-left {
+		left: -26px;
+		border-radius: 5px;
+	}
+	&-right {
+		right: -26px;
+		border-radius: 5px;
+	}
+	&-disabled {
+		opacity: .5;
+
+		&:hover {
+			background: #BBB;
+		}
+	}
+}
+</style>
